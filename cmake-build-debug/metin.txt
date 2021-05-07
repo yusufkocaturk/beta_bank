@@ -1,5 +1,0 @@
-userId 123412
-password 23434
-bakiye 10000Tl
-suFaturasi 450Tl
-elektrikFaturasi 300Tl
