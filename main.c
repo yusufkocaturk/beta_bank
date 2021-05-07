@@ -71,7 +71,7 @@ typedef struct {
     int kredi_karti_basvuru;
     int kredi_karti_limit_arttirma;
     int bireysel_kredi_basvurusu;
-    int deneme;
+
     int doviz_hesabi;
     int hisse_senedi_hesabi;
     int doviz_bakiyeleri;
