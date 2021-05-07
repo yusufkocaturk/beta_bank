@@ -1,0 +1,3 @@
+/Users/yusufkocaturk/CLionProjects/beta_bank/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/yusufkocaturk/CLionProjects/beta_bank/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/yusufkocaturk/CLionProjects/beta_bank/cmake-build-debug/CMakeFiles/beta_bank.dir
