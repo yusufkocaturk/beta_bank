@@ -116,6 +116,7 @@ ab+	aynı işlemlerin binary mod için geçerli durumları
 
 #include <stdbool.h>
 #include <stdio.h>
+
 #ifndef _WIN32
 printf("win");
 #endif __APPLE__
@@ -127,7 +128,7 @@ printf("apple");
 #define OKUMA_YAZMA_MODU "wr"
 
 
-void elektrikOde(){
+void elektrikOde() {
 
 }
 
@@ -199,7 +200,7 @@ void dosyaAc(char filename[], char mode[], bool newLine) {
 #endif //BETA_BANK_NOTLAR_H
 
 // SATIR SAYMA FONKSİYONU
-void count_line() {
+int count_line() {
     char chr;
     int count_lines = 0;
     chr = getc(fptr);
@@ -210,6 +211,7 @@ void count_line() {
         //take next character from file.
         chr = getc(fptr);
     }
+    return count_lines;
 }
 
 

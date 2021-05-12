@@ -1,83 +1,51 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
-void bakiyeSorgulama();
-
-void sifreDegistirme();
-
-void ibanGoruntuleme();
-
-void hesapOzeti();
-
-void betaKart_Menu();
-
-void hisseSenediHesabi();
-
-void dovizHesabi();
-
-void yatirimIslemleri_Menu();
-
-void bireyselKrediBasvurusu();
-
-void krediLimitArttirma();
-
-void krediKartiBasvurusu();
-
-void basvuruIslemleri_Menu();
-
-void egitimOdemeIslemleri();
-
-void trafikCezaOdemeIslemleri();
-
-void faturaOdemeIslemleri();
-
-void odemeIslemleri_Menu();
-
-void paraCekme();
-
-void krediKartinaYatirma();
-
-void hesabaYatirma();
-
-void paraYatirma_Menu();
-
-void paraIslemleri_Menu();
-
-void anamenu();
-
-void sinavOdemeleri_Menu();
-
-void applicationStart();
-
+#include <string.h>
 
 typedef struct {
-    int userId;
-    int password;
-    int hesap_no;
-    int iban;
-    int bakiye;
-    int kredi_karti;
-    int kredi_karti_borc;
-    int elektrik_faturasi;
-    int su_faturasi;
-    int dogalGaz_faturasi;
-    int trafik_cezasi;
-    int trafik_cezasi_borc;
-    int egitim_odemeleri;
-    int yks_ucreti;
-    int kpss_ucreti;
-    int ehliyet_ucreti;
-    int kredi_karti_basvuru;
-    int kredi_karti_limit_arttirma;
-    int bireysel_kredi_basvurusu;
-    int doviz_hesabi;
-    int hisse_senedi_hesabi;
-    int doviz_bakiyeleri;
-    int hisseler;
+    char userId[50];
+    char password[50];
+    char hesap_no[50];
+    char iban[50];
+    char bakiye[50];
+    char kredi_karti[50];
+    char kredi_karti_borc[50];
+    char elektrik_faturasi[50];
+    char su_faturasi[50];
+    char dogalGaz_faturasi[50];
+    char trafik_cezasi[50];
+    char trafik_cezasi_borc[50];
+    char egitim_odemeleri[50];
+    char yks_ucreti[50];
+    char kpss_ucreti[50];
+    char ehliyet_ucreti[50];
+    char kredi_karti_basvuru[50];
+    char kredi_karti_limit_arttirma[50];
+    char bireysel_kredi_basvurusu[50];
+    char doviz_hesabi[50];
+    char dolar_bakiye[50];
+    char euro_bakiye[50];
+    char altin_bakiye[50];
+    char hisse_senedi_hesabi[50];
+    char doviz_bakiyeleri[50];
+    char hisseler[50];
 } User;
+
+User user;
+
+#include "frontend.h"
+#include "backend.h"
 
 
 int main() {
 
+
+
+    applicationStart();
+
+
 }
+
+
+

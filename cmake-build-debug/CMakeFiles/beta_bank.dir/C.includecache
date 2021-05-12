@@ -6,11 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/Users/yusufkocaturk/CLionProjects/beta_bank/main.c
+/Users/yusufkocaturk/CLionProjects/Beta Bank/beta_bank/backend.h
+
+/Users/yusufkocaturk/CLionProjects/Beta Bank/beta_bank/frontend.h
+
+/Users/yusufkocaturk/CLionProjects/Beta Bank/beta_bank/main.c
 stdio.h
 -
 stdbool.h
 -
 stdlib.h
 -
+string.h
+-
+frontend.h
+/Users/yusufkocaturk/CLionProjects/Beta Bank/beta_bank/frontend.h
+backend.h
+/Users/yusufkocaturk/CLionProjects/Beta Bank/beta_bank/backend.h
 
