@@ -230,7 +230,7 @@ void paraIslemleri_Menu() {
 }
 
 void anamenu() {
-    char response;
+    int response;
 
     printf("ANA MENU\n");
     printf("1 - PARA ISLEMLERI MENUSU\n");
@@ -240,22 +240,22 @@ void anamenu() {
     printf("5 - BETAKART MENUSU\n");
 
     printf("Menu numarasini giriniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1':
+        case 1:
             paraIslemleri_Menu();
             break;
-        case '2':
+        case 2:
             odemeIslemleri_Menu();
             break;
-        case '3':
+        case 3:
             basvuruIslemleri_Menu();
             break;
-        case '4':
+        case 4:
             yatirimIslemleri_Menu();
             break;
-        case '5':
+        case 5:
             betaKart_Menu();
             break;
         default:
