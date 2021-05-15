@@ -19,21 +19,21 @@ void betaKart_Menu() {
 void hisseSenediHesabi();
 
 void dovizAlim() {
-    char response;
+    int response;
     printf("DOVIZ ALIM\n");
     printf("1 - DOLAR\n");
     printf("2 - EURO\n");
     printf("3 - ALTIN\n");
     printf("Alacaginiz doviz tipini seciniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
     switch (response) {
-        case '1':
+        case 1:
             printf("Alacaginiz dolar miktarini giriniz: ");
             break;
-        case '2':
+        case 2:
             printf("Alacaginiz euro miktarini giriniz: ");
             break;
-        case '3':
+        case 3:
             printf("Alacaginiz altin miktarini giriniz: ");
             break;
         default:
@@ -43,21 +43,21 @@ void dovizAlim() {
     }
 }
 void dovizSatim(){
-    char response;
+    int response;
     printf("DOVIZ SATIM\n");
     printf("1 - DOLAR\n");
     printf("2 - EURO\n");
     printf("3 - ALTIN\n");
     printf("Satacaginiz doviz tipini seciniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
     switch (response) {
-        case '1':
+        case 1:
             printf("Satacaginiz dolar miktarini giriniz: ");
             break;
-        case '2':
+        case 2:
             printf("Satacaginiz euro miktarini giriniz: ");
             break;
-        case '3':
+        case 3:
             printf("Satacaginiz altin miktarini giriniz: ");
             break;
         default:
@@ -68,8 +68,7 @@ void dovizSatim(){
 }
 
 void yatirimIslemleri_Menu() {
-    int dolar=3.02, euro=4.12, altin=221.24;
-    char response;
+    int dolar=3.02, euro=4.12, altin=221.24,response;
     printf("\nYATIRIM ISLEMLERI MENUSU\n");
     printf("DOVIZ KURLARI:\n");
     printf("DOLAR/TL: %d\n",dolar);
@@ -84,12 +83,12 @@ void yatirimIslemleri_Menu() {
     printf("1- DOVIZ ALIM \n");
     printf("2- DOVIZ SATIM \n");
     printf("Seciniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
     switch (response) {
-        case '1':
+        case 1:
             dovizAlim();
             break;
-        case '2':
+        case 2:
             dovizSatim();
             break;
         default:
@@ -118,25 +117,25 @@ void krediKartiBasvurusu(){
 
 void basvuruIslemleri_Menu() {
 
-    char response;
+    int response;
     printf("\nBASVURU ISLEMLERI MENUSU\n");
     printf("1 - KREDI KARTI BASVURUSU\n");
     printf("2 - KREDI KARTI LIMIT ARTTIRMA\n");
     printf("3 - BIREYSEL KREDI BASVURUSU\n");
     printf("4 - ANA MENU\n");
     printf("Menu numarasini giriniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
     switch (response) {
-        case '1':
+        case 1:
             krediKartiBasvurusu();
             break;
-        case '2':
+        case 2:
             krediLimitArttirma();
             break;
-        case '3':
+        case 3:
             bireyselKrediBasvurusu();
             break;
-        case '4':
+        case 4:
             anamenu();
             break;
         default:
@@ -172,7 +171,7 @@ void paraIslemleri_Menu() {
 }
 
 void anamenu() {
-    char response;
+    int response;
 
     printf("ANA MENU\n");
     printf("1 - PARA ISLEMLERI MENUSU\n");
@@ -182,22 +181,22 @@ void anamenu() {
     printf("5 - BETAKART MENUSU\n");
 
     printf("Menu numarasini giriniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1':
+        case 1 :
             paraIslemleri_Menu();
             break;
-        case '2':
+        case 2:
             odemeIslemleri_Menu();
             break;
-        case '3':
+        case 3:
             basvuruIslemleri_Menu(user);
             break;
-        case '4':
+        case 4:
             yatirimIslemleri_Menu(user);
             break;
-        case '5':
+        case 5:
             betaKart_Menu();
             break;
         default:
