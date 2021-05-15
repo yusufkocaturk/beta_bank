@@ -10,6 +10,7 @@ void sifreDegistirme() {
     char passwordCurrent[] = "123456";
     char response[] = "";
     int result;
+
     printf("\nSIFRE DEGISTIRME");
     printf("\nVAR OLAN SIFRENIZI GIRINIZ:\n");
     scanf("%s", response);
@@ -35,7 +36,7 @@ void hesapOzeti() {
 }
 
 void betaKart_Menu() {
-    char response;
+    int response;
 
     printf("BETAKART MENUSU\n");
     printf("1 - HESAP OZETI\n");
@@ -45,19 +46,19 @@ void betaKart_Menu() {
 
 
     printf("Menu numarasini giriniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1':
+        case 1:
             hesapOzeti();
             break;
-        case '2':
+        case 2:
             ibanGoruntuleme();
             break;
-        case '3':
+        case 3:
             sifreDegistirme();
             break;
-        case '4':
+        case 4:
             bakiyeSorgulama();
             break;
 
@@ -111,7 +112,7 @@ void paraIslemleri_Menu() {
 }
 
 void anamenu() {
-    char response;
+    int response;
 
     printf("ANA MENU\n");
     printf("1 - PARA ISLEMLERI MENUSU\n");
@@ -121,22 +122,22 @@ void anamenu() {
     printf("5 - BETAKART MENUSU\n");
 
     printf("Menu numarasini giriniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1':
+        case 1:
             paraIslemleri_Menu();
             break;
-        case '2':
+        case 2:
             odemeIslemleri_Menu();
             break;
-        case '3':
+        case 3:
             basvuruIslemleri_Menu();
             break;
-        case '4':
+        case 4:
             yatirimIslemleri_Menu();
             break;
-        case '5':
+        case 5:
             betaKart_Menu();
             break;
         default:
@@ -172,16 +173,16 @@ void girisYap() {
 
 void applicationStart() {
 
-    char response;
+    int response;
     printf("BETABANK'A HOS GELDINIZ\n");
     printf("1 - GIRIS YAP\n");
     printf("2 - KARTSIZ ISLEMLER(SINAV ODEMELERI)\n");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
     switch (response) {
-        case '1':
+        case 1:
             girisYap();
             break;
-        case '2':
+        case 2:
             sinavOdemeleri_Menu();
             break;
         default:
