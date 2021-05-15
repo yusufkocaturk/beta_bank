@@ -43,16 +43,16 @@ void egitimOdemeIslemleri(){
     strcpy(user.ehliyet_ucreti , "750");
     strcpy(user.bakiye , "300");
 
-    printf("1 - YKS ucreti: %d\n",atol(user.yks_ucreti));
-    printf("2 - KPSS ucreti: %d\n",atol(user.kpss_ucreti));
-    printf("3 - Ehliyet sinavi ucreti: %d\n",atol(user.ehliyet_ucreti));
+    printf("1 - YKS ucreti: %d\n",atoi(user.yks_ucreti));
+    printf("2 - KPSS ucreti: %d\n",atoi(user.kpss_ucreti));
+    printf("3 - Ehliyet sinavi ucreti: %d\n",atoi(user.ehliyet_ucreti));
 
     printf("Ucretini odemek istediginiz sinavin numarasini giriniz:");
     scanf(" %d",&response);
 
     switch (response) {
         case 1:
-            if(atol(user.bakiye) >= atol(user.yks_ucreti)){
+            if(atoi(user.bakiye) >= atoi(user.yks_ucreti)){
                 strcpy(user.yks_ucreti , "0");
                 printf("Isleminiz basariyla gerceklesmistir.\n");
             }
@@ -62,7 +62,7 @@ void egitimOdemeIslemleri(){
             anamenu();
             break;
         case 2:
-            if(atol(user.bakiye) >= atol(user.kpss_ucreti)){
+            if(atoi(user.bakiye) >= atoi(user.kpss_ucreti)){
                 strcpy(user.kpss_ucreti , "0");
                 printf("Isleminiz basariyla gerceklesmistir.\n");
             }
@@ -72,7 +72,7 @@ void egitimOdemeIslemleri(){
             anamenu();
             break;
         case 3:
-            if(atol(user.bakiye) >= atol(user.ehliyet_ucreti)){
+            if(atoi(user.bakiye) >= atoi(user.ehliyet_ucreti)){
                 strcpy(user.ehliyet_ucreti , "0");
                 printf("Isleminiz basariyla gerceklesmistir.\n");
             }
@@ -95,7 +95,7 @@ void trafikCezaOdemeIslemleri(){
     strcpy(user.bakiye , "2000");
 
     if(user.trafik_cezasi_borc != 0){
-        printf("Trafik cezasi borcunuz: %d\n",atol(user.trafik_cezasi_borc));
+        printf("Trafik cezasi borcunuz: %d\n",atoi(user.trafik_cezasi_borc));
     }
     else{
         printf("Borcunuz bulunmamaktadir.\n");
@@ -105,7 +105,7 @@ void trafikCezaOdemeIslemleri(){
 
     switch (response) {
         case 1:
-            if(atol(user.bakiye) >= atol(user.trafik_cezasi_borc)){
+            if(atoi(user.bakiye) >= atoi(user.trafik_cezasi_borc)){
                 strcpy(user.trafik_cezasi_borc , "0");
                 printf("Borcunuz basariyla odendi.\n");
             }
@@ -133,21 +133,21 @@ void faturaOdemeIslemleri(){
     strcpy(user.dogalGaz_faturasi , "1500");
     strcpy(user.bakiye , "1000");
 
-    printf("1 - Su faturasi borcunuz: %d\n",atol(user.su_faturasi));
-    printf("2 - Elektrik faturasi borcunuz: %d\n",atol(user.elektrik_faturasi));
-    printf("1 - Dogalgaz faturasi borcunuz: %d\n",atol(user.dogalGaz_faturasi));
+    printf("1 - Su faturasi borcunuz: %d\n",atoi(user.su_faturasi));
+    printf("2 - Elektrik faturasi borcunuz: %d\n",atoi(user.elektrik_faturasi));
+    printf("1 - Dogalgaz faturasi borcunuz: %d\n",atoi(user.dogalGaz_faturasi));
 
     printf("Yatirmak istediginiz fatura numarasini giriniz:");
     scanf(" %d",&response);
 
     switch (response) {
         case 1:
-            if(atol(user.bakiye) >= atol(user.su_faturasi)){
+            if(atoi(user.bakiye) >= atoi(user.su_faturasi)){
                 strcpy(user.su_faturasi , "0");
 
-                printf("1 - Su faturasi borcunuz: %d\n",atol(user.su_faturasi));
-                printf("2 - Elektrik faturasi borcunuz: %d\n",atol(user.elektrik_faturasi));
-                printf("1 - Dogalgaz faturasi borcunuz: %d\n",atol(user.dogalGaz_faturasi));
+                printf("1 - Su faturasi borcunuz: %d\n",atoi(user.su_faturasi));
+                printf("2 - Elektrik faturasi borcunuz: %d\n",atoi(user.elektrik_faturasi));
+                printf("1 - Dogalgaz faturasi borcunuz: %d\n",atoi(user.dogalGaz_faturasi));
             }
             else{
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
@@ -155,12 +155,12 @@ void faturaOdemeIslemleri(){
             anamenu();
             break;
         case 2:
-            if(atol(user.bakiye) >= atol(user.elektrik_faturasi)){
+            if(atoi(user.bakiye) >= atoi(user.elektrik_faturasi)){
                 strcpy(user.elektrik_faturasi , "0");
 
-                printf("1 - Su faturasi borcunuz: %d\n",atol(user.su_faturasi));
-                printf("2 - Elektrik faturasi borcunuz: %d\n",atol(user.elektrik_faturasi));
-                printf("3 - Dogalgaz faturasi borcunuz: %d\n",atol(user.dogalGaz_faturasi));
+                printf("1 - Su faturasi borcunuz: %d\n",atoi(user.su_faturasi));
+                printf("2 - Elektrik faturasi borcunuz: %d\n",atoi(user.elektrik_faturasi));
+                printf("3 - Dogalgaz faturasi borcunuz: %d\n",atoi(user.dogalGaz_faturasi));
             }
             else{
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
@@ -168,12 +168,12 @@ void faturaOdemeIslemleri(){
             anamenu();
             break;
         case 3:
-            if(atol(user.bakiye) >= atol(user.dogalGaz_faturasi)){
+            if(atoi(user.bakiye) >= atoi(user.dogalGaz_faturasi)){
                 strcpy(user.dogalGaz_faturasi , "0");
 
-                printf("1 - Su faturasi borcunuz: %d\n",atol(user.su_faturasi));
-                printf("2 - Elektrik faturasi borcunuz: %d\n",atol(user.elektrik_faturasi));
-                printf("1 - Dogalgaz faturasi borcunuz: %d\n",atol(user.dogalGaz_faturasi));
+                printf("1 - Su faturasi borcunuz: %d\n",atoi(user.su_faturasi));
+                printf("2 - Elektrik faturasi borcunuz: %d\n",atoi(user.elektrik_faturasi));
+                printf("1 - Dogalgaz faturasi borcunuz: %d\n",atoi(user.dogalGaz_faturasi));
             }
             else{
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
