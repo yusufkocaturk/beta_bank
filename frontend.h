@@ -4,13 +4,13 @@
 #define BETA_BANK_FRONTEND_H
 
 
-void bakiyeSorgulama();
+void bakiyeSorgulama(){}
 
-void sifreDegistirme();
+void sifreDegistirme(){}
 
-void ibanGoruntuleme();
+void ibanGoruntuleme(){}
 
-void hesapOzeti();
+void hesapOzeti(){}
 
 void betaKart_Menu() {
     printf("5 - BETAKART MENUSU\n");
