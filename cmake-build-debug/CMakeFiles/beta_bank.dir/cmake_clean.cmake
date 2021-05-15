@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/beta_bank.dir/main.c.o"
-  "beta_bank"
+  "CMakeFiles/beta_bank.dir/main.c.obj"
+  "beta_bank.exe"
+  "beta_bank.exe.manifest"
   "beta_bank.pdb"
+  "libbeta_bank.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
