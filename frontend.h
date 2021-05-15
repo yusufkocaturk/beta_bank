@@ -7,6 +7,39 @@ void anamenu();
 
 void applicationStart();
 
+
+char clearMessage[6];
+
+void detectOperatingSystem() {
+    printf("detect");
+    if (__APPLE__) {
+        strcpy(clearMessage, "clear");
+    } else {
+        strcpy(clearMessage, "cls");
+    }
+}
+
+void clearScreen() {
+    system(clearMessage);
+}
+
+void sonYonlendirme() {
+    int response;
+    printf("\n\n9 - ANA MENUYE DON");
+    printf("\n0 - CIKIS YAP\n");
+    scanf(" %d", &response);
+    switch (response) {
+        case 9:
+            anamenu();
+            break;
+        case 0:
+            exit(0);
+            break;
+        default:
+            break;
+    }
+}
+
 void bakiyeSorgulama() {}
 
 void sifreDegistirme() {
@@ -71,7 +104,6 @@ void betaKart_Menu() {
             break;
     }
 }
-
 
 
 void dovizAlim() {
@@ -376,23 +408,113 @@ void odemeIslemleri_Menu() {
     }
 }
 
-void paraCekme();
+void paraCekme() {
+    int bakiye, tutar, islemSonucu;
+    bakiye = 1000;
+    printf(" BAKIYENIZ: %d\n", bakiye);
+    printf(" CEKMEK ISTEDIGINIZ TUTARI GIRINIZ: ");
+    scanf(" %d", &tutar);
+    islemSonucu = bakiye - tutar;
 
-void krediKartinaYatirma();
+    //??ıslemler user.bakiye =bakiye- tutar
+    printf(" YENI BAKIYENIZ: %d", islemSonucu);
+    printf(" CEKMIS OLDUGUNUZ TUTAR: %d\n\n", tutar);
+    anamenu();
+}
 
-void hesabaYatirma();
+
+void krediKartinaYatirma() {
+    int tutar;
+
+    // kredi kartı bakiye ya da kullanılabilir limiti eksik tanımlanmalı
+    // yeni bakiye user.bakiye ye mi yazdırılmalı
+
+
+    printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
+    scanf(" %d", &tutar);
+    // ?? ıslemlerr
+
+    printf(" YATIRDIGINIZ TUTAR: %d\n\n ", tutar);
+    anamenu();
+}
+
+void hesabaYatirma() {
+
+    int tutar, bakiye, islemSonucu;
+    //bakiye = user.bakiye;
+    bakiye = 1000;
+
+
+    printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
+    scanf(" %d", &tutar);
+
+    // ??ıslemeler? user.bakiye = user.bakiye+tutar;
+    // user.bakiye = bakiye - tutar;
+    // user.bakiye = islemSonucu;
+
+    islemSonucu = bakiye - tutar;
+
+    printf(" YATIRDIGINIZ TUTAR: %d ", tutar);
+    printf(" YENI BAKIYENIZ: %d\n\n", islemSonucu);
+    anamenu();
+
+
+}
 
 void paraYatirma_Menu() {
+
+    int response;
+    printf(" PAARA YATIRMA MENUSU\n\n");
+    printf("1 - HESABA PARA YATIRMA\n");
+    printf("2 - KREDI KARTINA PARA YATIRMA\n");
+
+    scanf(" %d", &response);
+
+    switch (response) {
+        case 1 :
+            hesabaYatirma();
+            break;
+        case 2 :
+            krediKartinaYatirma();
+            break;
+        default:
+            printf("\nHatali islem yaptiniz\n\n");
+            anamenu();
+            break;
+    }
 
 }
 
 void paraIslemleri_Menu() {
-    printf("1 - PARA ISLEMLERI MENUSU\n");
+
+    int response;
+    printf(" PARA ISLEMLERI MENUSU\n\n");
+
+    printf("1 - PARA YATIRMA MENUSU\n");
+    printf("2 - PARA CEKME ISLEMLER\n");
+
+    scanf(" %d", &response);
+
+    switch (response) {
+        case 1 :
+            paraYatirma_Menu();
+            break;
+        case 2 :
+            paraCekme();
+            break;
+        default:
+            printf("\nHatali islem yaptiniz \n\n");
+            anamenu();
+            break;
+
+    }
+
+
 }
 
 void anamenu() {
-    int response;
 
+    int response;
     printf("ANA MENU\n");
     printf("1 - PARA ISLEMLERI MENUSU\n");
     printf("2 - ODEME ISLEMLERI MENUSU\n");
@@ -428,6 +550,7 @@ void anamenu() {
 
 
 void girisYap() {
+
     char password[] = "123456";
     char response[] = "123456";
     int result;
@@ -450,42 +573,44 @@ void girisYap() {
 }
 
 void sinavOdemeleri_Menu() {
+
     printf("SINAV ODEMELERI SAYFASI\n");
     char kimlikNo[11];
     int kpssUcreti = 300;
     int response;
 
     printf("TC kimlik numaranizi giriniz:");
-    gets(kimlikNo);
+    scanf(" %s", kimlikNo);
 
     while (strlen(kimlikNo) != 11) {
         printf("\nHatali kimlik no giris yaptiniz, tekrar giriniz...\n");
-        gets(kimlikNo);
+        scanf(" %s", kimlikNo);
     }
     printf("KPSS sinav ucreti: %d\n", kpssUcreti);
     printf("Odemek istiyorsaniz 1'e, cikis yapmak icin 0'a basiniz:");
     scanf(" %d", &response);
 
     switch (response) {
+
         case 1:
             kpssUcreti = 0;
             printf("Odemeniz basariyla alinmistir.\n");
-            applicationStart();
+            sonYonlendirme();
             break;
         case 0:
             printf("Odeme gerceklestirilmedi...\n");
-            printf("Giris sayfasina yonlendiriliyorsunuz...\n");
-            applicationStart();
+            // printf("Giris sayfasina yonlendiriliyorsunuz...\n");
+            sonYonlendirme();
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
-            applicationStart();
+            sonYonlendirme();
             break;
     }
 }
 
 void applicationStart() {
-
+    clearScreen();
     int response;
     printf("BETABANK'A HOS GELDINIZ\n");
     printf("1 - GIRIS YAP\n");

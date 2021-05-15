@@ -39,12 +39,8 @@ User user;
 
 
 int main() {
-
-
-
+    detectOperatingSystem();
     applicationStart();
-
-
 }
 
 
