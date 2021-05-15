@@ -1,1 +1,9 @@
-/cmake-build-debug/
+*
+
+!.gitignore
+!main.c
+!frontend.h
+!backend.h
+!notlar.h
+
+!*/
