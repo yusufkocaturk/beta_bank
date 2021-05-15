@@ -3,6 +3,7 @@
 #ifndef BETA_BANK_FRONTEND_H
 #define BETA_BANK_FRONTEND_H
 
+void anamenu();
 
 void bakiyeSorgulama();
 
@@ -44,18 +45,107 @@ void odemeIslemleri_Menu() {
     printf("2 - ODEME ISLEMLERI MENUSU\n");
 }
 
-void paraCekme();
+void paraCekme() {
+    int bakiye, tutar,islemSonucu;
+     bakiye = 1000;
+    printf(" BAKIYENIZ: %d\n", bakiye );
+    printf(" CEKMEK ISTEDIGINIZ TUTARI GIRINIZ: ");
+    scanf(" %d", &tutar );
+    islemSonucu = bakiye - tutar;
 
-void krediKartinaYatirma();
+    //??ıslemler user.bakiye =bakiye- tutar
+    printf(" YENI BAKIYENIZ: %d", islemSonucu);
+    printf(" CEKMIS OLDUGUNUZ TUTAR: %d\n\n", tutar );
+    anamenu();
+}
 
-void hesabaYatirma();
+
+
+void krediKartinaYatirma() {
+    int tutar ;
+
+    // kredi kartı bakiye ya da kullanılabilir limiti eksik tanımlanmalı
+  // yeni bakiye user.bakiye ye mi yazdırılmalı
+
+
+    printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : " );
+     scanf(" %d", &tutar );
+    // ?? ıslemlerr
+
+    printf(" YATIRDIGINIZ TUTAR: %d\n\n ", tutar );
+    anamenu();
+}
+
+void hesabaYatirma() {
+    int tutar,bakiye,islemSonucu;
+    //bakiye = user.bakiye;
+    bakiye = 1000;
+
+
+    printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : " );
+    scanf(" %d", &tutar  );
+
+    // ??ıslemeler? user.bakiye = user.bakiye+tutar;
+   // user.bakiye = bakiye - tutar;
+   // user.bakiye = islemSonucu;
+
+    islemSonucu = bakiye - tutar;
+
+    printf(" YATIRDIGINIZ TUTAR: %d ", tutar );
+    printf(" YENI BAKIYENIZ: %d\n\n", islemSonucu );
+    anamenu();
+
+
+}
 
 void paraYatirma_Menu() {
+    char response ;
+    printf(" PAARA YATIRMA MENUSU\n\n");
+    printf("1 - HESABA PARA YATIRMA\n");
+    printf("2 - KREDI KARTINA PARA YATIRMA\n");
+
+    scanf(" %c", &response);
+
+    switch (response) {
+        case '1' :
+            hesabaYatirma() ;
+            break;
+        case '2' :
+            krediKartinaYatirma() ;
+            break;
+        default:
+            printf("\nHatali islem yaptiniz\n\n");
+            anamenu();
+            break;
+    }
 
 }
 
 void paraIslemleri_Menu() {
-    printf("1 - PARA ISLEMLERI MENUSU\n");
+    char response;
+    printf(" PARA ISLEMLERI MENUSU\n\n");
+
+    printf("1 - PARA YATIRMA MENUSU\n");
+    printf("2 - PARA CEKME ISLEMLER\n");
+
+    scanf(" %c", &response);
+
+    switch (response) {
+        case '1':
+            paraYatirma_Menu() ;
+            break;
+        case '2' :
+           paraCekme() ;
+            break;
+        default:
+            printf("\nHatali islem yaptiniz \n\n");
+            anamenu() ;
+            break;
+
+    }
+
+
+
 }
 
 void anamenu() {
