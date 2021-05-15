@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+!main.c
+!frontend.h
+!backend.h
+!notlar.h
+
+!*/

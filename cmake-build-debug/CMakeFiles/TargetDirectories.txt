@@ -1,3 +1,0 @@
-C:/Users/Hp/Desktop/CLionProjects/beta_bank/cmake-build-debug/CMakeFiles/beta_bank.dir
-C:/Users/Hp/Desktop/CLionProjects/beta_bank/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Hp/Desktop/CLionProjects/beta_bank/cmake-build-debug/CMakeFiles/rebuild_cache.dir
