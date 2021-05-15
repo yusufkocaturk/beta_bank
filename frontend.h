@@ -154,9 +154,9 @@ void girisYap() {
     int result;
     printf("GIRIS YAP\n\n");
     printf("HESABINIZA AIT SIFREYI GIRINIZ:");
+    scanf("%s", response);
 
     //gets(response);
-    scanf(" %s", response);
     printf("şifre : %s", response);
 
     result = strcmp(response, password);
