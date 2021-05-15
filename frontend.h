@@ -99,18 +99,18 @@ void hesabaYatirma() {
 }
 
 void paraYatirma_Menu() {
-    char response ;
+    int response ;
     printf(" PAARA YATIRMA MENUSU\n\n");
     printf("1 - HESABA PARA YATIRMA\n");
     printf("2 - KREDI KARTINA PARA YATIRMA\n");
 
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1' :
+        case 1 :
             hesabaYatirma() ;
             break;
-        case '2' :
+        case 2 :
             krediKartinaYatirma() ;
             break;
         default:
@@ -122,19 +122,19 @@ void paraYatirma_Menu() {
 }
 
 void paraIslemleri_Menu() {
-    char response;
+    int response;
     printf(" PARA ISLEMLERI MENUSU\n\n");
 
     printf("1 - PARA YATIRMA MENUSU\n");
     printf("2 - PARA CEKME ISLEMLER\n");
 
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1':
+        case 1 :
             paraYatirma_Menu() ;
             break;
-        case '2' :
+        case 2 :
            paraCekme() ;
             break;
         default:
@@ -149,7 +149,7 @@ void paraIslemleri_Menu() {
 }
 
 void anamenu() {
-    char response;
+    int response;
 
     printf("ANA MENU\n");
     printf("1 - PARA ISLEMLERI MENUSU\n");
@@ -159,22 +159,22 @@ void anamenu() {
     printf("5 - BETAKART MENUSU\n");
 
     printf("Menu numarasini giriniz: ");
-    scanf(" %c", &response);
+    scanf(" %d", &response);
 
     switch (response) {
-        case '1':
+        case 1 :
             paraIslemleri_Menu();
             break;
-        case '2':
+        case 2 :
             odemeIslemleri_Menu();
             break;
-        case '3':
+        case 3 :
             basvuruIslemleri_Menu();
             break;
-        case '4':
+        case 4 :
             yatirimIslemleri_Menu();
             break;
-        case '5':
+        case 5 :
             betaKart_Menu();
             break;
         default:
