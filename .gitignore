@@ -1,0 +1,17 @@
+
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!backend.h
+!frontend.h
+!main.c
+!notlar.h
+
+# etc...
+
+# ...even if they are in subdirectories
+!*/
+
+# if the files to be tracked are in subdirectories
