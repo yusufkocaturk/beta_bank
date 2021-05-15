@@ -3,4 +3,4 @@ project(beta_bank C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(beta_bank main.c notlar.h)
+add_executable(beta_bank main.c notlar.h frontend.h backend.h)
