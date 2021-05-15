@@ -1,8 +1,4 @@
 
-
-
-
-//
 // Created by Yusuf Kocatürk on 7.05.2021.
 /*
  *  * İŞLEYİŞ
@@ -17,6 +13,7 @@
  * YAZMA OKUMA İŞLEMLERİ İÇİN DOSYA YOLLARI, OKUMA MODLARI GİBİ ŞEYLER DEFİNE İLE TANIMLANIP OKUNABİLİRLİK SAĞLANIR
  *
  * HER MENU ARAYUZU BIR FONKSİYON OLARAK TANIMLANIP İLGİLİ YERLERDE FONKSİYON TANIMLANMASI YAPILIR
+ *
  *
  *
  *
@@ -68,6 +65,7 @@
 r	okuma modunda açar, dosya yoksa oluşturmaz
 w	yazma modunda açar, dosya içeriği üzerine yazılır, dosya yoksa oluştutur
 a	dosyanın sonuna ekleme yapar dosya yoksa oluşturur
+
 r+	hem okuma hem yazma modunda açar, dosya yoksa null döner, oluşturmaz
 w+	okuma ve yazma modunda açar dosya içeriği üzerine yazılır dosya yoksa oluşturulur
 a+  okuma ve ekleme modunda açar, dosya yoksa oluşturulur
@@ -82,12 +80,10 @@ ab+	aynı işlemlerin binary mod için geçerli durumları
  ==================== İŞLETİM SİSTEMİ KONTROLÜ ==========================
  Global path vermede gerekli olabilir
 
- #ifndef _WIN32
-    printf("win");
-#endif __APPLE__
-    printf("apple");
+
 
  ==================== GEREKLİ OLABİLECEK FONKSİYONLAR ==========================
+
  STRING FONKSİYONLAR
  strlen() bir string arrayinin uzunluğunu döner
  strcmp(dizi1,dizi2) 2 string arrayini karşılaştırıp doğru ise 0 döner yanlış ise 1
@@ -101,6 +97,7 @@ ab+	aynı işlemlerin binary mod için geçerli durumları
     OUTPUT:
     bir ornektir
     **********************************************************************
+    *
     STRING DEGERİ INT E CEVİRME
     int a = 0;
     char strinG[] ="1234";
@@ -112,12 +109,28 @@ ab+	aynı işlemlerin binary mod için geçerli durumları
 #ifndef BETA_BANK_NOTLAR_H
 #define BETA_BANK_NOTLAR_H
 
+#define USER1 "user1.txt"
+#define USER2 "user2.txt"
+#define TEDAS "tedas.txt"
+
+
 #include <stdbool.h>
+#include <stdio.h>
+
+#ifndef _WIN32
+printf("win");
+#endif __APPLE__
+printf("apple");
 
 
 #define OKUMA_MODU "r"
 #define YAZMA_MODU "w"
 #define OKUMA_YAZMA_MODU "wr"
+
+
+void elektrikOde() {
+
+}
 
 
 void dosyaAc(char filename[], char mode[], bool newLine) {
@@ -139,7 +152,7 @@ void dosyaAc(char filename[], char mode[], bool newLine) {
 //    printf(" %s ", den);
 
 
-    printf("\nkonum: %d ", ftell(file));
+    //  printf("\nkonum: %d ", ftell(file));
 
 //    char cdizi[] = "deneme";
 //
@@ -153,6 +166,7 @@ void dosyaAc(char filename[], char mode[], bool newLine) {
 //    rewind(dosya);
 //    dosya = fopen(filename, "r");
 //    chr = getc(dosya);
+
 //    fseek(dosya, -30, SEEK_END);
 //    while (chr != EOF) {
 //        //Count whenever new line is encountered
@@ -186,7 +200,7 @@ void dosyaAc(char filename[], char mode[], bool newLine) {
 #endif //BETA_BANK_NOTLAR_H
 
 // SATIR SAYMA FONKSİYONU
-void count_line() {
+int count_line() {
     char chr;
     int count_lines = 0;
     chr = getc(fptr);
@@ -197,13 +211,18 @@ void count_line() {
         //take next character from file.
         chr = getc(fptr);
     }
+    return count_lines;
 }
 
 
 // ****** ÇEŞİTLİ PARAMETRELER İLE MODÜLER HALE GETİRİLMELİ DÜZELTME VE GUNCELLEME GEREKLİ *********
 
 // SATIRLARDAN GELEN VERİNİN BİR DİZİNİN ELEMANLARI OALRAK SAKLANMASI FONKSİYONU
+
+
+
 void get_data_from_lines() {
+
     printf("\n****** get_data_from_lines fonksiyonundan gelen veriler *****\n");
     char c[1000];
     int i = 0;
@@ -217,8 +236,12 @@ void get_data_from_lines() {
 }
 
 
+
 // SATIRLARDAN GELEN VERİNİN SADECE SAYI OLDUĞU FONKSİYON
 // DoL: data from lines
+
+
+
 void get_DfL_as_number() {
 
     int count_lines = 0;
@@ -236,3 +259,94 @@ void get_DfL_as_number() {
     }
     printf("\n*****************************************\n");
 }
+
+
+
+//    FILE *ptr;
+//
+//    ptr = fopen("sule.txt", "w");
+//
+//
+//    char response;
+//    printf("ana menu 1");
+//
+//
+//    switch (getchar()) {
+//        case '1':
+//             hesaba_para_yatirma();
+//            break;
+//        case '2':
+//            kredi_kartina_para_yatirma();
+//            break;
+//        default:
+//            printf("Lütfen Menüdeki Seçeneklerden Birini Seçiniz");
+//            break;
+//    }
+
+
+
+
+
+//    kullanici kul;
+//
+//    char c[1000];
+//    char chr;
+//    FILE *fptr;
+//
+//    fptr = fopen("metin.txt", "w");
+//    fprintf(fptr, "userId: %d \npassword: %d \n", 123412, 23434);
+//
+//
+//
+//  if ((fptr = fopen("metin.txt", "r")) == NULL) {
+//        printf("Error! File cannot be opened.");
+//        // Program exits if the file pointer returns NULL.
+//        exit(1);
+//    }
+//
+//
+//
+//    //Count whenever new line is encountered
+//    int count_lines = 0;
+//    chr = getc(fptr);
+//    while (chr != EOF) {
+//        if (chr == '\n') {
+//            count_lines = count_lines + 1;
+//        }
+//        //take next character from file.
+//        chr = getc(fptr);
+//    }
+//    rewind(fptr);
+//    printf("%d", count_lines);
+//
+//
+//    int i = 0;
+//    int den[100];
+//    for (i; i < count_lines; i++) {
+//        char deneme[100];
+//
+//        fscanf(fptr, "%[^\n]", c);
+//        strcpy(deneme, strstr(c, " "));
+//        den[i] = atoi(deneme);
+//        fseek(fptr, 1, SEEK_CUR);
+//        printf("\n%d.Satır\n%d\n", i + 1, den[i]);
+//
+//    }
+//    kul.userId = den[0];
+//    kul.bakiye = den[2];
+//
+
+
+
+//    printf("\nUser ID %d\n", kul.userId);
+//    printf("\nbky %d", kul.bakiye);
+//
+//    fscanf(fptr, "%[^\n]", c);
+//    fseek(fptr, 1, SEEK_CUR);
+//    printf("%d.Satır\n%s offset:%d", i, c, ftell(fptr));
+//    fscanf(fptr, "%[^\n]", c);
+//    fseek(fptr, 1, SEEK_CUR);
+//    printf("\nData from the file:\n%s offset:%d", c, ftell(fptr));
+//    fclose(fptr);
+//
+

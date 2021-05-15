@@ -1,68 +1,51 @@
 #include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
-#include <stdlib.h>
-
 typedef struct {
-    int userId;
-    int password;
-    int bakiye;
-    int suFaturasi;
-    int elektrikFaturasi;
-} kullanici;
+    char userId[50];
+    char password[50];
+    char hesap_no[50];
+    char iban[50];
+    char bakiye[50];
+    char kredi_karti[50];
+    char kredi_karti_borc[50];
+    char elektrik_faturasi[50];
+    char su_faturasi[50];
+    char dogalGaz_faturasi[50];
+    char trafik_cezasi[50];
+    char trafik_cezasi_borc[50];
+    char egitim_odemeleri[50];
+    char yks_ucreti[50];
+    char kpss_ucreti[50];
+    char ehliyet_ucreti[50];
+    char kredi_karti_basvuru[50];
+    char kredi_karti_limit_arttirma[50];
+    char bireysel_kredi_basvurusu[50];
+    char doviz_hesabi[50];
+    char dolar_bakiye[50];
+    char euro_bakiye[50];
+    char altin_bakiye[50];
+    char hisse_senedi_hesabi[50];
+    char doviz_bakiyeleri[50];
+    char hisseler[50];
+} User;
+
+User user;
+
+#include "frontend.h"
+#include "backend.h"
+
 
 int main() {
 
-    kullanici kul;
-
-    char c[1000];
-    char chr;
-    FILE *fptr;
-//    fptr = fopen("meti.txt", "w");
-//    fprintf(fptr, "userId: %d \npassword: %d \n", 123412, 23434);
-//
-
-    if ((fptr = fopen("metin.txt", "r")) == NULL) {
-        printf("Error! File cannot be opened.");
-        // Program exits if the file pointer returns NULL.
-        exit(1);
-    }
-    //Count whenever new line is encountered
-    int count_lines = 0;
-    chr = getc(fptr);
-    while (chr != EOF) {
-        if (chr == '\n') {
-            count_lines = count_lines + 1;
-        }
-        //take next character from file.
-        chr = getc(fptr);
-    }
-    rewind(fptr);
-    printf("%d", count_lines);
 
 
-    int i = 0;
-    int den[100];
-    for (i; i < count_lines; i++) {
-        char deneme[100];
+    applicationStart();
 
-        fscanf(fptr, "%[^\n]", c);
-        strcpy(deneme, strstr(c, " "));
-        den[i] = atoi(deneme);
-        fseek(fptr, 1, SEEK_CUR);
-        printf("\n%d.Satır\n%d\n", i + 1, den[i]);
-
-    }
-    kul.userId = den[0];
-    printf("\nUser ID %d", kul.userId);
-
-//    fscanf(fptr, "%[^\n]", c);
-//    fseek(fptr,1,SEEK_CUR);
-//    printf("%d.Satır\n%s offset:%d",i, c, ftell(fptr));
-//    fscanf(fptr, "%[^\n]", c);
-//    fseek(fptr,1,SEEK_CUR);
-//    printf("\nData from the file:\n%s offset:%d", c, ftell(fptr));
-//    fclose(fptr);
-    return 0;
 
 }
+
+
+
