@@ -7,11 +7,17 @@ void anamenu();
 
 void applicationStart();
 
+/**************** YARDIMCI FONKSİYONLAR ***************/
+
+void beklet(int saniye) {
+    printf("ISLEMINIZ GERCEKLESTIRILIYOR. LUTFEN BEKLEYINIZ...");
+    usleep(saniye * 1000000);
+}
 
 char clearMessage[6];
 
 void detectOperatingSystem() {
-    printf("detect");
+
     if (__APPLE__) {
         strcpy(clearMessage, "clear");
     } else {
@@ -23,6 +29,7 @@ void clearScreen() {
     system(clearMessage);
 }
 
+/*******************************/
 void sonYonlendirme() {
     int response;
     printf("\n\n9 - ANA MENUYE DON");
@@ -426,13 +433,18 @@ void paraCekme() {
 void krediKartinaYatirma() {
     int tutar;
 
+
+
+
     // kredi kartı bakiye ya da kullanılabilir limiti eksik tanımlanmalı
     // yeni bakiye user.bakiye ye mi yazdırılmalı
 
 
     printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
     scanf(" %d", &tutar);
-    // ?? ıslemlerr
+
+    user.bakiye -= tutar;
+    user.kredi_karti_borc -= tutar;
 
     printf(" YATIRDIGINIZ TUTAR: %d\n\n ", tutar);
     anamenu();
@@ -551,18 +563,19 @@ void anamenu() {
 
 void girisYap() {
 
-    char password[] = "123456";
-    char response[] = "123456";
+
     int result;
+    char deger[25];
     printf("GIRIS YAP\n\n");
     printf("HESABINIZA AIT SIFREYI GIRINIZ:");
-    // scanf("%s", response);
 
-    //gets(response);
-    printf("şifre : %s", response);
+    scanf("%s", &deger);
+    char sifre[25];
 
-    result = strcmp(response, password);
-//    printf("%d", result);
+    // sprintf(sifre, "%d", user.password);
+
+
+    result = strcmp(deger, sifre);
 
     if (result == 0) {
         anamenu();
