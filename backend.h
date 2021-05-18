@@ -8,6 +8,7 @@
 #define USER1 "user1.txt"
 #define USER2 "user2.txt"
 #define USER3 "user3.txt"
+#define USER4 "user4.txt"
 
 
 FILE *file;
