@@ -19,16 +19,11 @@ void kullaniciBilgileriniCek(char userName[]) {
 
     int satirSayisi = 0;
     char c;
-
-
-    file = fopen("user1.txt", "r");
-
+    file = fopen(userName, "r+");
     if (file == NULL) {
         printf("VERITABANINDAN VERILER OKUNAMADI");
-        //exit(0);
+        exit(0);
     }
-    // SATIR SAYISI VERISINI ÇEKME
-
     c = getc(file);
     while (c != EOF) {
         if (c == '\n') {
@@ -36,9 +31,12 @@ void kullaniciBilgileriniCek(char userName[]) {
         }
         c = getc(file);
     }
-    //printf("%d", satirSayisi);
 
-    int dataArray[40];
+
+    // satır sayarken dosyanın sonuna gelen imleci rewind ile dosyanın başına alıyoruz ki veri
+    // okumasını doğru bir şekilde yapabilelim
+    rewind(file);
+    int dataArray[100];
     for (int i = 0; i < satirSayisi; ++i) {
 
         char sayiVerisi[100];
@@ -47,47 +45,18 @@ void kullaniciBilgileriniCek(char userName[]) {
         strcpy(sayiVerisi, strstr(satirVerisi, " "));
         dataArray[i] = atoi(sayiVerisi);
         fseek(file, 1, SEEK_CUR);
-        printf("%s", satirVerisi);
+
+      //  printf("%s\n", satirVerisi);
     }
-
-    printf("%d", dataArray[0]);
-
-
-
-    // ***************
-    // user.userId = 12341682;
-    // user.password = 12345;
-    // user.hesap_no = 1239876;
-    // user.iban = 76859403;
-    // user.bakiye = 15754;
-    // user.kredi_karti = 1;
-    // user.kredi_karti_borc = 3682;
-    // user.kredi_karti_basvuru = 0;
-    // user.kredi_karti_limit_arttirma = 0;
-    // user.kredi_karti_limit_miktari = 12500;
-    // user.elektrik_faturasi = 350;
-    // user.su_faturasi = 264;
-    // user.dogalGaz_faturasi = 560;
-    // user.trafik_cezasi_borc = 2000;
-    // user.yks_ucreti = 100;
-    // user.kpss_ucreti = 250;
-    // user.ehliyet_ucreti = 750;
-    // user.bireysel_kredi_basvurusu = 1;
-    // user.dolar_bakiye = 3867;
-    // user.euro_bakiye = 1906;
-    // user.altin_bakiye = 10;
-    // user.bakiye -= user.elektrik_faturasi;
-    // user.elektrik_faturasi = 0;
-
-    kullaniciBilgileriniYazdir();
 
 }
 
 void kullaniciBilgileriniYazdir() {
 
+    fclose(file);
+    file = fopen("user1.txt", "w");
 
     fprintf(file, "userId %d\n", user.userId);
-
     fprintf(file, "password %d\n", user.password);
     fprintf(file, "hesapNo %d\n", user.hesap_no);
     fprintf(file, "iban %d\n", user.iban);
@@ -97,7 +66,6 @@ void kullaniciBilgileriniYazdir() {
     fprintf(file, "krediKartiBasvuru %d\n", user.kredi_karti_basvuru);
     fprintf(file, "krediKartiLimitArttirma %d\n", user.kredi_karti_limit_arttirma);
     fprintf(file, "krediKartiLimitMiktari %d\n", user.kredi_karti_limit_miktari);
-
     fprintf(file, "elektrikFaturasi %d\n", user.elektrik_faturasi);
     fprintf(file, "suFaturasi %d\n", user.su_faturasi);
     fprintf(file, "dogalgazFaturasi %d\n", user.dogalGaz_faturasi);
@@ -112,5 +80,67 @@ void kullaniciBilgileriniYazdir() {
 
 
 }
+
+
+// bu fonksiyon çağrılıcaksa main'de sadece bu fonksiyon çağrılmalı ve bir kere kullanıldıktan sonra
+// main'den kaldırılmalıdır
+void veriGirisiYap(char userName[]) {
+
+    // dosay açıksa kapatır
+    fclose(file);
+    //parametre olarak girilen dosyayı write modunda açar ve file pointer'ına atar
+    file = fopen(userName, "w");
+
+    // değişmesi istenen verileri girin
+    user.userId = 12341682;
+    user.password = 12345;
+    user.hesap_no = 1239876;
+    user.iban = 76859403;
+    user.bakiye = 15754;
+    user.kredi_karti = 1;
+    user.kredi_karti_borc = 3682;
+    user.kredi_karti_basvuru = 0;
+    user.kredi_karti_limit_arttirma = 0;
+    user.kredi_karti_limit_miktari = 12500;
+    user.elektrik_faturasi = 350;
+    user.su_faturasi = 264;
+    user.dogalGaz_faturasi = 560;
+    user.trafik_cezasi_borc = 2000;
+    user.yks_ucreti = 100;
+    user.kpss_ucreti = 250;
+    user.ehliyet_ucreti = 750;
+    user.bireysel_kredi_basvurusu = 1;
+    user.dolar_bakiye = 3867;
+    user.euro_bakiye = 1906;
+    user.altin_bakiye = 10;
+
+
+    // user verisini file'a yazdırır
+    fprintf(file, "userId %d\n", user.userId);
+    fprintf(file, "password %d\n", user.password);
+    fprintf(file, "hesapNo %d\n", user.hesap_no);
+    fprintf(file, "iban %d\n", user.iban);
+    fprintf(file, "bakiye %d\n", user.bakiye);
+    fprintf(file, "krediKarti %d\n", user.kredi_karti);
+    fprintf(file, "krediKartiBorc %d\n", user.kredi_karti_borc);
+    fprintf(file, "krediKartiBasvuru %d\n", user.kredi_karti_basvuru);
+    fprintf(file, "krediKartiLimitArttirma %d\n", user.kredi_karti_limit_arttirma);
+    fprintf(file, "krediKartiLimitMiktari %d\n", user.kredi_karti_limit_miktari);
+    fprintf(file, "elektrikFaturasi %d\n", user.elektrik_faturasi);
+    fprintf(file, "suFaturasi %d\n", user.su_faturasi);
+    fprintf(file, "dogalgazFaturasi %d\n", user.dogalGaz_faturasi);
+    fprintf(file, "trafikCezasiBorc %d\n", user.trafik_cezasi_borc);
+    fprintf(file, "yksUcreti %d\n", user.yks_ucreti);
+    fprintf(file, "kpssUcreti %d\n", user.kpss_ucreti);
+    fprintf(file, "ehliyetUcreti %d\n", user.ehliyet_ucreti);
+    fprintf(file, "bireyselKrediBasvurusu %d\n", user.bireysel_kredi_basvurusu);
+    fprintf(file, "dolarBakiye %d\n", user.dolar_bakiye);
+    fprintf(file, "euroBakiye %d\n", user.euro_bakiye);
+    fprintf(file, "altinBakiye %d\n", user.altin_bakiye);
+
+    //dosyayı kapatır
+    fclose(file);
+}
+
 
 #endif //BETA_BANK_BACKEND_H
