@@ -48,6 +48,27 @@ void kullaniciBilgileriniCek(char userName[]) {
 
       //  printf("%s\n", satirVerisi);
     }
+    user.userId = dataArray[0];
+    user.password = dataArray[1];
+    user.hesap_no = dataArray[2];
+    user.iban = dataArray[3];
+    user.bakiye = dataArray[4];
+    user.kredi_karti = dataArray[5];
+    user.kredi_karti_borc = dataArray[6];
+    user.kredi_karti_basvuru = dataArray[7];
+    user.kredi_karti_limit_arttirma = dataArray[8];
+    user.kredi_karti_limit_miktari = dataArray[9];
+    user.elektrik_faturasi = dataArray[10];
+    user.su_faturasi = dataArray[11];
+    user.dogalGaz_faturasi = dataArray[12];
+    user.trafik_cezasi_borc = dataArray[13];
+    user.yks_ucreti = dataArray[14];
+    user.kpss_ucreti = dataArray[15];
+    user.ehliyet_ucreti = dataArray[16];
+    user.bireysel_kredi_basvurusu = dataArray[17];
+    user.dolar_bakiye = dataArray[18];
+    user.euro_bakiye = dataArray[19];
+    user.altin_bakiye = dataArray[20];
 
 }
 
