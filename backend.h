@@ -19,7 +19,7 @@ void kullaniciBilgileriniCek(char userName[]) {
 
     int satirSayisi = 0;
     char c;
-    file = fopen(userName, "r+");
+    file = fopen(userName, "r");
     if (file == NULL) {
         printf("VERITABANINDAN VERILER OKUNAMADI");
         exit(0);
@@ -46,7 +46,7 @@ void kullaniciBilgileriniCek(char userName[]) {
         dataArray[i] = atoi(sayiVerisi);
         fseek(file, 1, SEEK_CUR);
 
-      //  printf("%s\n", satirVerisi);
+        //  printf("%s\n", satirVerisi);
     }
     user.userId = dataArray[0];
     user.password = dataArray[1];
@@ -69,12 +69,13 @@ void kullaniciBilgileriniCek(char userName[]) {
     user.dolar_bakiye = dataArray[18];
     user.euro_bakiye = dataArray[19];
     user.altin_bakiye = dataArray[20];
+    fclose(file);
 
 }
 
 void kullaniciBilgileriniYazdir() {
 
-    fclose(file);
+
     file = fopen("user1.txt", "w");
 
     fprintf(file, "userId %d\n", user.userId);
@@ -99,7 +100,7 @@ void kullaniciBilgileriniYazdir() {
     fprintf(file, "euroBakiye %d\n", user.euro_bakiye);
     fprintf(file, "altinBakiye %d\n", user.altin_bakiye);
 
-
+    fclose(file);
 }
 
 

@@ -11,7 +11,7 @@ void applicationStart();
 /**************** YARDIMCI FONKSİYONLAR ***************/
 
 void beklet(int saniye) {
-    printf("ISLEMINIZ GERCEKLESTIRILIYOR. LUTFEN BEKLEYINIZ...");
+    printf("\n\nISLEMINIZ GERCEKLESTIRILIYOR. LUTFEN BEKLEYINIZ...\n\n");
     usleep(saniye * 1000000);
 }
 
@@ -50,38 +50,84 @@ void sonYonlendirme() {
     }
 }
 
-void bakiyeSorgulama() {}
+void bakiyeSorgulama() {
+    clearScreen();
+    printf("BAKIYE SORUGULAMA\n");
+    printf("\nVARLIKLARINIZ\n");
+    printf("\nTURK LIRASI: %d TL", user.bakiye);
+    printf("\nDOLAR: %d $", user.dolar_bakiye);
+    printf("\nEURO: %d €", user.euro_bakiye);
+    printf("\nALTIN: %d GRAM", user.altin_bakiye);
+    sonYonlendirme();
+}
 
 void sifreDegistirme() {
-    char passwordCurrent[] = "123456";
-    char response[] = "";
+    clearScreen();
     int result;
+    char girilenSifre[25];
+    char eskiSifre[25];
+
+    sprintf(eskiSifre, "%d", user.password);
 
     printf("\nSIFRE DEGISTIRME");
     printf("\nVAR OLAN SIFRENIZI GIRINIZ:\n");
-    scanf("%s", response);
-    result = strcmp(response, passwordCurrent);
+    scanf("%s", girilenSifre);
+
+    result = strcmp(girilenSifre, eskiSifre);
+
 
     if (result == 0) {
-        char passwordNew[] = "";
+        clearScreen();
+        char yeniSifre[25];
+
+        tekrarDeneyin:
+
         printf("\nYENI SIFRENIZI GIRINIZ:\n");
-        scanf(" %s", passwordNew);
-        printf("YENI SIFRENIZ: %s", passwordNew);
+        printf("\nSIFRE KURALLARI:\n");
+        printf("* 0 ILE BASLAMAMALIDIR\n");
+        printf("* EN FAZLA 8 KARAKTER OLMALIDIR\n\n");
+        scanf(" %s", yeniSifre);
+
+        if (yeniSifre[0] != '0' && strlen(yeniSifre) < 9) {
+            printf("SIFRE OLUSTURMA BASARILI.");
+            user.password = atoi(yeniSifre);
+            kullaniciBilgileriniYazdir();
+            kullaniciBilgileriniCek(USER1);
+            beklet(2);
+            sonYonlendirme();
+        } else {
+            printf("\nSIFRE OLUSTURMA BASARISIZ.\nLUTFEN SIFRENIZIN KURALLARA UYDUGUNDAN EMIN OLUN\n\n");
+            goto tekrarDeneyin;
+        }
     }
 
 }
 
 void ibanGoruntuleme() {
-    char iban[] = "1234-5678-9101-1121";
+    clearScreen();
     printf("\nIBAN GORUNTULE\n");
-    printf("IBAN: %s", iban);
+    printf("IBAN: %d", user.iban);
+    sonYonlendirme();
 }
 
 void hesapOzeti() {
+    clearScreen();
     printf("\nHESAP OZETI");
+    printf("\nHESAP NUMARANIZ: %d", user.hesap_no);
+    printf("\nVARLIKLARINIZ\n");
+    printf("\nTURK LIRASI: %d TL", user.bakiye);
+    printf("\nDOLAR: %d $", user.dolar_bakiye);
+    printf("\nEURO: %d €", user.euro_bakiye);
+    printf("\nALTIN: %d GRAM", user.altin_bakiye);
+    printf("\n\nKREDI KARTI BORCUNUZ: %d", user.kredi_karti_borc);
+    printf("\nKREDI KARTI LIMITINIZ: %d", user.kredi_karti_limit_miktari);
+    printf("\nKREDI KARTI KULLANILABILIR LIMITINIZ: %d\n", user.kredi_karti_limit_miktari - user.kredi_karti_borc);
+    sonYonlendirme();
+
 }
 
 void betaKart_Menu() {
+    clearScreen();
     int response;
 
     printf("BETAKART MENUSU\n");
@@ -174,9 +220,9 @@ void yatirimIslemleri_Menu() {
     printf("EURO/TL: %d\n", euro);
     printf("ALTIN/TL: %d\n", altin);
     printf("VARLIKLARINIZ\n");
-    printf("DOLAR:%s\n", user.dolar_bakiye);
-    printf("EURO:%s\n", user.euro_bakiye);
-    printf("ALTIN:%s\n", user.altin_bakiye);
+    printf("DOLAR:%d\n", user.dolar_bakiye);
+    printf("EURO:%d\n", user.euro_bakiye);
+    printf("ALTIN:%d\n", user.altin_bakiye);
 
 
     printf("1- DOVIZ ALIM \n");
@@ -246,152 +292,178 @@ void basvuruIslemleri_Menu() {
 }
 
 void egitimOdemeIslemleri() {
+    clearScreen();
     printf("EGITIM ODEME ISLEMLERI\n");
     int response;
 
-    strcpy(user.yks_ucreti, "100");
-    strcpy(user.kpss_ucreti, "250");
-    strcpy(user.ehliyet_ucreti, "750");
-    strcpy(user.bakiye, "300");
-
-    printf("1 - YKS ucreti: %d\n", atoi(user.yks_ucreti));
-    printf("2 - KPSS ucreti: %d\n", atoi(user.kpss_ucreti));
-    printf("3 - Ehliyet sinavi ucreti: %d\n", atoi(user.ehliyet_ucreti));
+    printf("1 - YKS ucreti: %d\n", user.yks_ucreti);
+    printf("2 - KPSS ucreti: %d\n", user.kpss_ucreti);
+    printf("3 - Ehliyet sinavi ucreti: %d\n", user.ehliyet_ucreti);
 
     printf("Ucretini odemek istediginiz sinavin numarasini giriniz:");
     scanf(" %d", &response);
 
     switch (response) {
         case 1:
-            if (atoi(user.bakiye) >= atoi(user.yks_ucreti)) {
-                strcpy(user.yks_ucreti, "0");
+            if (user.bakiye >= user.yks_ucreti) {
+                user.bakiye = (user.bakiye - user.yks_ucreti);
+                user.yks_ucreti = 0;
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER1);
+
+                beklet(3);
                 printf("Isleminiz basariyla gerceklesmistir.\n");
             } else {
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
             }
-            anamenu();
+            sonYonlendirme();
             break;
         case 2:
-            if (atoi(user.bakiye) >= atoi(user.kpss_ucreti)) {
-                strcpy(user.kpss_ucreti, "0");
+            if (user.bakiye >= user.kpss_ucreti) {
+                user.bakiye = (user.bakiye - user.kpss_ucreti);
+                user.kpss_ucreti = 0;
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER1);
+                beklet(3);
                 printf("Isleminiz basariyla gerceklesmistir.\n");
             } else {
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
             }
-            anamenu();
+            sonYonlendirme();
             break;
         case 3:
-            if (atoi(user.bakiye) >= atoi(user.ehliyet_ucreti)) {
-                strcpy(user.ehliyet_ucreti, "0");
+            if (user.bakiye >= user.ehliyet_ucreti) {
+                user.bakiye = (user.bakiye - user.ehliyet_ucreti);
+                user.ehliyet_ucreti = 0;
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER1);
+                beklet(3);
                 printf("Isleminiz basariyla gerceklesmistir.\n");
             } else {
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
             }
-            anamenu();
+            sonYonlendirme();
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
-            anamenu();
+            sonYonlendirme();
             break;
     }
 }
 
 void trafikCezaOdemeIslemleri() {
+    clearScreen();
     printf("TRAFIK CEZASI ODEME ISLEMLERI\n");
     int response;
-    strcpy(user.trafik_cezasi_borc, "1000");
-    strcpy(user.bakiye, "2000");
 
-    if (atoi(user.trafik_cezasi_borc) != 0) {
-        printf("Trafik cezasi borcunuz: %d\n", atoi(user.trafik_cezasi_borc));
+    if (user.trafik_cezasi_borc != 0) {
+        printf("Trafik cezasi borcunuz: %d\n", user.trafik_cezasi_borc);
+
+        printf("Borcunuzu odemek istiyorsaniz 1'e yoksa 0'a basiniz:");
+        scanf(" %d", &response);
+
+        switch (response) {
+            case 1:
+                if (user.bakiye >= user.trafik_cezasi_borc) {
+                    user.bakiye = (user.bakiye - user.trafik_cezasi_borc);
+                    user.trafik_cezasi_borc = 0;
+
+                    kullaniciBilgileriniYazdir();
+                    kullaniciBilgileriniCek(USER1);
+                    beklet(3);
+                    printf("Borcunuz basariyla odendi.\n");
+
+                } else {
+                    printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
+                }
+                sonYonlendirme();
+                break;
+            case 0:
+                anamenu();
+                break;
+            default:
+                printf("\nHatali secim yaptiniz\n\n");
+                sonYonlendirme();
+                break;
+        }
     } else {
-        printf("Borcunuz bulunmamaktadir.\n");
-    }
-    printf("Borcunuzu odemek istiyorsaniz 1'e yoksa 0'a basiniz:");
-    scanf(" %d", &response);
 
-    switch (response) {
-        case 1:
-            if (atoi(user.bakiye) >= atoi(user.trafik_cezasi_borc)) {
-                strcpy(user.trafik_cezasi_borc, "0");
-                printf("Borcunuz basariyla odendi.\n");
-            } else {
-                printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
-            }
-            anamenu();
-            break;
-        case 0:
-            anamenu();
-            break;
-        default:
-            printf("\nHatali secim yaptiniz\n\n");
-            anamenu();
-            break;
+        printf("Borcunuz bulunmamaktadir.\n");
+        sonYonlendirme();
     }
 }
 
 void faturaOdemeIslemleri() {
+    clearScreen();
     printf("FATURA ODEME ISLEMLERI\n");
     int response;
 
-    strcpy(user.su_faturasi, "500");
-    strcpy(user.elektrik_faturasi, "1000");
-    strcpy(user.dogalGaz_faturasi, "1500");
-    strcpy(user.bakiye, "1000");
-
-    printf("1 - Su faturasi borcunuz: %d\n", atoi(user.su_faturasi));
-    printf("2 - Elektrik faturasi borcunuz: %d\n", atoi(user.elektrik_faturasi));
-    printf("1 - Dogalgaz faturasi borcunuz: %d\n", atoi(user.dogalGaz_faturasi));
+    printf("1 - Su faturasi borcunuz: %d\n", user.su_faturasi);
+    printf("2 - Elektrik faturasi borcunuz: %d\n", user.elektrik_faturasi);
+    printf("3 - Dogalgaz faturasi borcunuz: %d\n", user.dogalGaz_faturasi);
 
     printf("Yatirmak istediginiz fatura numarasini giriniz:");
     scanf(" %d", &response);
 
     switch (response) {
         case 1:
-            if (atoi(user.bakiye) >= atoi(user.su_faturasi)) {
-                strcpy(user.su_faturasi, "0");
+            if (user.bakiye >= user.su_faturasi) {
+                user.bakiye = (user.bakiye - user.su_faturasi);
+                user.su_faturasi = 0;
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER1);
+                beklet(3);
 
-                printf("1 - Su faturasi borcunuz: %d\n", atoi(user.su_faturasi));
-                printf("2 - Elektrik faturasi borcunuz: %d\n", atoi(user.elektrik_faturasi));
-                printf("1 - Dogalgaz faturasi borcunuz: %d\n", atoi(user.dogalGaz_faturasi));
+                printf("1 - Su faturasi borcunuz: %d\n", user.su_faturasi);
+                printf("2 - Elektrik faturasi borcunuz: %d\n", user.elektrik_faturasi);
+                printf("3 - Dogalgaz faturasi borcunuz: %d\n", user.dogalGaz_faturasi);
             } else {
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
             }
-            anamenu();
+            sonYonlendirme();
             break;
         case 2:
-            if (atoi(user.bakiye) >= atoi(user.elektrik_faturasi)) {
-                strcpy(user.elektrik_faturasi, "0");
+            if (user.bakiye >= user.elektrik_faturasi) {
+                user.bakiye = (user.bakiye - user.elektrik_faturasi);
+                user.elektrik_faturasi = 0;
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER1);
+                beklet(3);
 
-                printf("1 - Su faturasi borcunuz: %d\n", atoi(user.su_faturasi));
-                printf("2 - Elektrik faturasi borcunuz: %d\n", atoi(user.elektrik_faturasi));
-                printf("3 - Dogalgaz faturasi borcunuz: %d\n", atoi(user.dogalGaz_faturasi));
+                printf("1 - Su faturasi borcunuz: %d\n", user.su_faturasi);
+                printf("2 - Elektrik faturasi borcunuz: %d\n", user.elektrik_faturasi);
+                printf("3 - Dogalgaz faturasi borcunuz: %d\n", user.dogalGaz_faturasi);
             } else {
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
             }
-            anamenu();
+            sonYonlendirme();
             break;
         case 3:
-            if (atoi(user.bakiye) >= atoi(user.dogalGaz_faturasi)) {
-                strcpy(user.dogalGaz_faturasi, "0");
+            if (user.bakiye >= user.dogalGaz_faturasi) {
+                user.bakiye = (user.bakiye - user.dogalGaz_faturasi);
+                user.dogalGaz_faturasi = 0;
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER1);
+                beklet(3);
 
-                printf("1 - Su faturasi borcunuz: %d\n", atoi(user.su_faturasi));
-                printf("2 - Elektrik faturasi borcunuz: %d\n", atoi(user.elektrik_faturasi));
-                printf("1 - Dogalgaz faturasi borcunuz: %d\n", atoi(user.dogalGaz_faturasi));
+                printf("1 - Su faturasi borcunuz: %d\n", user.su_faturasi);
+                printf("2 - Elektrik faturasi borcunuz: %d\n", user.elektrik_faturasi);
+                printf("3 - Dogalgaz faturasi borcunuz: %d\n", user.dogalGaz_faturasi);
             } else {
                 printf("Borcunuzu odemek icin yeterli bakiyeye sahip degilsiniz.\n");
             }
-            anamenu();
+            sonYonlendirme();
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
-            anamenu();
+            sonYonlendirme();
             break;
     }
 }
 
 void odemeIslemleri_Menu() {
-    printf("2 - ODEME ISLEMLERI MENUSU\n");
+    clearScreen();
+    printf("ODEME ISLEMLERI MENUSU\n");
     int response;
 
     printf("1 - Fatura Odeme \n");
@@ -413,7 +485,7 @@ void odemeIslemleri_Menu() {
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
-            anamenu();
+            sonYonlendirme();
             break;
     }
 }
@@ -572,10 +644,10 @@ void girisYap() {
     printf("GIRIS YAP\n\n");
     printf("HESABINIZA AIT SIFREYI GIRINIZ:");
 
-    scanf("%s", &deger);
+    scanf("%s", deger);
     char sifre[25];
 
-    // sprintf(sifre, "%d", user.password);
+    sprintf(sifre, "%d", user.password);
 
 
     result = strcmp(deger, sifre);
@@ -589,7 +661,7 @@ void girisYap() {
 }
 
 void sinavOdemeleri_Menu() {
-
+    clearScreen();
     printf("SINAV ODEMELERI SAYFASI\n");
     char kimlikNo[11];
     int kpssUcreti = 300;
@@ -610,17 +682,18 @@ void sinavOdemeleri_Menu() {
 
         case 1:
             kpssUcreti = 0;
+            beklet(3);
             printf("Odemeniz basariyla alinmistir.\n");
-            sonYonlendirme();
+            anamenu();
             break;
         case 0:
             printf("Odeme gerceklestirilmedi...\n");
             // printf("Giris sayfasina yonlendiriliyorsunuz...\n");
-            sonYonlendirme();
+            anamenu();
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
-            sonYonlendirme();
+            anamenu();
             break;
     }
 }
