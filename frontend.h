@@ -600,7 +600,7 @@ void paraIslemleri_Menu() {
 }
 
 void anamenu() {
-
+clearScreen();
     int response;
     printf("ANA MENU\n");
     printf("1 - PARA ISLEMLERI MENUSU\n");
@@ -637,7 +637,7 @@ void anamenu() {
 
 
 void girisYap() {
-
+clearScreen();
 
     int result;
     char deger[25];
