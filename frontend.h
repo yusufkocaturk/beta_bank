@@ -596,10 +596,10 @@ void girisYap() {
     printf("GIRIS YAP\n\n");
     printf("HESABINIZA AIT SIFREYI GIRINIZ:");
 
-    scanf("%s", &deger);
+    scanf("%s", deger);
     char sifre[25];
 
-    // sprintf(sifre, "%d", user.password);
+    sprintf(sifre, "%d", user.password);
 
 
     result = strcmp(deger, sifre);
@@ -611,6 +611,7 @@ void girisYap() {
         girisYap();
     }
 }
+
 
 void sinavOdemeleri_Menu() {
     clearScreen();
