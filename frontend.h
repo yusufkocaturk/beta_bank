@@ -18,11 +18,12 @@ char clearMessage[6];
 
 void detectOperatingSystem() {
 
-    if (__APPLE__) {
-        strcpy(clearMessage, "clear");
-    } else {
-        strcpy(clearMessage, "cls");
-    }
+#ifdef __APPLE__
+    strcpy(clearMessage, "clear");
+#elif _WIN32
+    strcpy(clearMessage,"cls");
+#endif
+
 }
 
 void clearScreen() {
