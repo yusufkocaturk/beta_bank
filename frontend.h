@@ -605,19 +605,7 @@ void odemeIslemleri_Menu() {
     }
 }
 
-void paraCekme() {
-    int bakiye, tutar, islemSonucu;
-    bakiye = 1000;
-    printf(" BAKIYENIZ: %d\n", bakiye);
-    printf(" CEKMEK ISTEDIGINIZ TUTARI GIRINIZ: ");
-    scanf(" %d", &tutar);
-    islemSonucu = bakiye - tutar;
 
-    //??ıslemler user.bakiye =bakiye- tutar
-    printf(" YENI BAKIYENIZ: %d", islemSonucu);
-    printf(" CEKMIS OLDUGUNUZ TUTAR: %d\n\n", tutar);
-    anamenu();
-}
 
 
 void paraCekme() {
