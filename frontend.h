@@ -505,53 +505,72 @@ void paraCekme() {
 }
 
 
-void krediKartinaYatirma() {
+void paraCekme() {
+    clearScreen();
+    printf("PARA CEKME SAYFASI\n\n");
     int tutar;
+    printf(" BAKIYENIZ: %d\n", user.bakiye);
+    printf(" CEKMEK ISTEDIGINIZ TUTARI GIRINIZ: ");
+    scanf(" %d", &tutar);
+    if (tutar < user.bakiye) {
+        user.bakiye -= tutar;
+        kullaniciBilgileriniYazdir();
+        kullaniciBilgileriniCek(USER1);
+
+        beklet(2);
+
+        printf(" YENI BAKIYENIZ: %d", user.bakiye);
+        printf(" CEKMIS OLDUGUNUZ TUTAR: %d\n\n", tutar);
+
+    } else {
+        printf("YETERSIZ BAKIYE\n\n");
+    }
+    sonYonlendirme();
+}
 
 
-
-
-    // kredi kartı bakiye ya da kullanılabilir limiti eksik tanımlanmalı
-    // yeni bakiye user.bakiye ye mi yazdırılmalı
-
+void krediKartinaYatirma() {
+    clearScreen();
+    printf("KREDI KARTINA PARA YATIRMA SAYFASI\n\n");
+    int tutar;
 
     printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
     scanf(" %d", &tutar);
-
     user.bakiye -= tutar;
     user.kredi_karti_borc -= tutar;
-
+    kullaniciBilgileriniYazdir();
+    kullaniciBilgileriniCek(USER1);
+    beklet(2);
     printf(" YATIRDIGINIZ TUTAR: %d\n\n ", tutar);
-    anamenu();
+    sonYonlendirme();
 }
 
 void hesabaYatirma() {
-
-    int tutar, bakiye, islemSonucu;
-    //bakiye = user.bakiye;
-    bakiye = 1000;
-
+    clearScreen();
+    printf("HESABA PARA  YATIRMA SAYFASI\n\n");
+    int tutar ;
 
     printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
     scanf(" %d", &tutar);
 
-    // ??ıslemeler? user.bakiye = user.bakiye+tutar;
-    // user.bakiye = bakiye - tutar;
-    // user.bakiye = islemSonucu;
 
-    islemSonucu = bakiye - tutar;
+    user.bakiye += tutar;
+    kullaniciBilgileriniYazdir();
+    kullaniciBilgileriniCek(USER1);
+
+    beklet(2);
 
     printf(" YATIRDIGINIZ TUTAR: %d ", tutar);
-    printf(" YENI BAKIYENIZ: %d\n\n", islemSonucu);
-    anamenu();
+    printf(" YENI BAKIYENIZ: %d\n\n", user.bakiye);
 
+    sonYonlendirme();
 
 }
 
 void paraYatirma_Menu() {
-
+    clearScreen();
     int response;
-    printf(" PAARA YATIRMA MENUSU\n\n");
+    printf(" PARA YATIRMA MENUSU\n\n");
     printf("1 - HESABA PARA YATIRMA\n");
     printf("2 - KREDI KARTINA PARA YATIRMA\n");
 
@@ -566,14 +585,14 @@ void paraYatirma_Menu() {
             break;
         default:
             printf("\nHatali islem yaptiniz\n\n");
-            anamenu();
+            sonYonlendirme();
             break;
     }
 
 }
 
 void paraIslemleri_Menu() {
-
+    clearScreen();
     int response;
     printf(" PARA ISLEMLERI MENUSU\n\n");
 
@@ -591,7 +610,7 @@ void paraIslemleri_Menu() {
             break;
         default:
             printf("\nHatali islem yaptiniz \n\n");
-            anamenu();
+            sonYonlendirme();
             break;
 
     }
