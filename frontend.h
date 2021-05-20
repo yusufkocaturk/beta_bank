@@ -636,7 +636,7 @@ void krediKartinaYatirma() {
     clearScreen();
     printf("KREDI KARTINA PARA YATIRMA SAYFASI\n\n");
     int tutar;
-
+    printf("KREDI KARTI BORCUNUZ: %d\n",user.kredi_karti_borc);
     printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
     scanf(" %d", &tutar);
     user.bakiye -= tutar;
