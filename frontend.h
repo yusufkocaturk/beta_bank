@@ -163,7 +163,8 @@ void betaKart_Menu() {
 
 
 void dovizAlim() {
-    int response;
+
+    int response,alim,dolar=3, euro=4, altin=221 ;
     printf("DOVIZ ALIM\n");
     printf("1 - DOLAR\n");
     printf("2 - EURO\n");
@@ -173,22 +174,51 @@ void dovizAlim() {
     switch (response) {
         case 1:
             printf("Alacaginiz dolar miktarini giriniz: ");
+            scanf(" %d",&alim);
+            if(alim<=user.bakiye){
+                user.dolar_bakiye=user.dolar_bakiye+alim;
+                user.bakiye=user.bakiye-(alim*dolar);}
+            else{
+                printf("BAKIYENIZ YETERSIZ\n");
+                dovizAlim();
+            }
+            sonYonlendirme();
             break;
         case 2:
             printf("Alacaginiz euro miktarini giriniz: ");
+            scanf(" %d",&alim);
+            if(alim<=user.bakiye){
+                user.euro_bakiye=user.euro_bakiye+alim;
+                user.bakiye=user.bakiye-(alim*euro);}
+            else{
+                printf("BAKIYENIZ YETERSIZ\n");
+                dovizAlim();
+            }
+            sonYonlendirme();
             break;
         case 3:
             printf("Alacaginiz altin miktarini giriniz: ");
+            scanf(" %d",&alim);
+            if(alim<=user.bakiye){
+                user.altin_bakiye=user.altin_bakiye+alim;
+                user.bakiye=user.bakiye-(alim*altin);}
+            else{
+                printf("BAKIYENIZ YETERSIZ\n");
+                dovizAlim();
+            }
+            sonYonlendirme();
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
             dovizAlim();
             break;
     }
+    sonYonlendirme();
 }
 
-void dovizSatim() {
-    int response;
+void dovizSatim(){
+
+    int response,satim,dolar=3, euro=4, altin=221;
     printf("DOVIZ SATIM\n");
     printf("1 - DOLAR\n");
     printf("2 - EURO\n");
@@ -198,35 +228,69 @@ void dovizSatim() {
     switch (response) {
         case 1:
             printf("Satacaginiz dolar miktarini giriniz: ");
+            scanf(" %d", &satim);
+            if(satim>user.dolar_bakiye){
+                user.dolar_bakiye=user.dolar_bakiye-satim;
+                user.bakiye=user.bakiye+(dolar*satim);
+            }
+            else{
+                printf("BAKIYENIZ YETERSIZ\n");
+                dovizSatim();
+            }
+            sonYonlendirme();
             break;
         case 2:
             printf("Satacaginiz euro miktarini giriniz: ");
+            scanf(" %d", &satim);
+            if(satim>user.euro_bakiye){
+                user.euro_bakiye=user.euro_bakiye-satim;
+                user.bakiye=user.bakiye+(euro*satim);
+            }
+            else{
+                printf("BAKIYENIZ YETERSIZ\n");
+                dovizSatim();
+            }
+            sonYonlendirme();
             break;
         case 3:
             printf("Satacaginiz altin miktarini giriniz: ");
+            scanf(" %d", &satim);
+            if(satim>(user.altin_bakiye*altin)){
+                user.altin_bakiye=user.altin_bakiye-satim;
+                user.bakiye=user.bakiye+(altin*satim);
+            }
+            else{
+                printf("BAKIYENIZ YETERSIZ\n");
+                dovizSatim();
+            }
+            sonYonlendirme();
             break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
             dovizSatim();
             break;
     }
+    sonYonlendirme();
 }
 
 void yatirimIslemleri_Menu() {
-    int dolar = 3, euro = 4, altin = 221, response;
+    clearScreen();
+    int dolar=3, euro=4, altin=221,response;
     printf("\nYATIRIM ISLEMLERI MENUSU\n");
-    printf("DOVIZ KURLARI:\n");
-    printf("DOLAR/TL: %d\n", dolar);
-    printf("EURO/TL: %d\n", euro);
-    printf("ALTIN/TL: %d\n", altin);
-    printf("VARLIKLARINIZ\n");
-    printf("DOLAR:%d\n", user.dolar_bakiye);
-    printf("EURO:%d\n", user.euro_bakiye);
-    printf("ALTIN:%d\n", user.altin_bakiye);
+    printf("\nDOVIZ KURLARI\n");
+    printf("DOLAR/TL: %d\n",dolar);
+    printf("EURO/TL: %d\n",euro);
+    printf("ALTIN/TL: %d\n",altin);
+    printf("\nVARLIKLARINIZ\n");
+    printf("DOLAR: %d\n",user.dolar_bakiye);
+    printf("EURO: %d\n",user.euro_bakiye);
+    printf("ALTIN(gram): %d\n",user.altin_bakiye);
+    printf("ALTIN: %d\n",(user.altin_bakiye*altin));
 
 
-    printf("1- DOVIZ ALIM \n");
+    printf("\n1- DOVIZ ALIM \n");
     printf("2- DOVIZ SATIM \n");
+    printf("3- ANA MENU \n");
     printf("Seciniz: ");
     scanf(" %d", &response);
     switch (response) {
@@ -236,6 +300,9 @@ void yatirimIslemleri_Menu() {
         case 2:
             dovizSatim();
             break;
+        case 3:
+            anamenu();
+            break;
         default:
             printf("\nHatali secim yaptiniz\n\n");
             yatirimIslemleri_Menu();
@@ -244,20 +311,68 @@ void yatirimIslemleri_Menu() {
 
 }
 
-void bireyselKrediBasvurusu() {
-    int maas, oran = 2, vade;
+void bireyselKrediBasvurusu(){
+    clearScreen();
+    int maas,vade,miktar;
     printf("BIREYSEL KREDI BASVURUSU\n");
     printf("AYLIK NET MAASINIZI GIRINIZ:");
-    scanf(" %d", &maas);
+    scanf(" %d",&maas);
+    printf("ISTEDIGINIZ VADE SURESI:");
+    scanf(" %d",&vade);
+    miktar=((maas/100)*30*vade);
+    printf("ALABILECEGINIZ KREDI TUTARI:%d\n",miktar);
+    printf("BASVURMAK ISTIYORSANIZ 1\n");
+    printf("BASVURMAK ISTEMIYORSANIZ 0\n");
+    printf("SECINIZ:");
+    scanf(" %d",&user.bireysel_kredi_basvurusu);
+    sonYonlendirme();
+
 }
 
-void krediLimitArttirma() {
-    printf("KREDI KARTI LIMIT ARTTIRMA");
+void krediLimitArttirma(){
+    clearScreen();
+    int  limit=user.kredi_karti_limit_miktari,maas,arti,istek,sonuc;
+    printf("\nKREDI KARTI LIMIT ARTTIRMA\n");
+    printf("LIMITINIZ: %d\n",user.kredi_karti_limit_miktari);
+    printf("AYLIK NET MAASINIZI GIRINIZ:");
+    scanf(" %d",&maas);
+    if(limit>(maas*3)){
+        printf("GIRDIGINIZ VERILER LIMIT ARTTIRIMI ICIN UYGUN BULUNMAMAKTADIR.");
+    }else
+    {
+        printf("BASVURMAK ISTIYORSANIZ 1\n");
+        printf("BASVURMAK ISTEMIYORSANIZ 0\n");
+        printf("SECINIZ:");
+        scanf(" %d",&user.kredi_karti_limit_arttirma);
+        if(user.kredi_karti_limit_arttirma ==1){
+            arti=(maas*3)-limit;
+            printf("MAKSIMUM ARTIRILABILECEK MIKTAR: %d\n ",arti);
+            printf("ARTIRMAK ISTEDIGINIZ MIKTARI GIRINIZ: ");
+            scanf("%d", &istek);
+            if(arti>istek){
+                user.kredi_karti_limit_miktari=limit+istek;
+                printf("YENI LIMITINIZ: %s",user.kredi_karti_limit_miktari);
+            }  else{
+                printf("HATALI SECIM");
+                krediLimitArttirma();
+            }
+        }else sonYonlendirme();
+    }
+    sonYonlendirme();
 }
 
-void krediKartiBasvurusu() {
+void krediKartiBasvurusu(){
+    clearScreen();
     printf("KREDI KARTI BASVURUSU\n");
-
+    if(user.kredi_karti_basvuru==1){
+        printf("HALI HAZIRDA BIR KREDI KARTINIZ BULUNMAKTADIR. IKINCI BIR KREDI KARTI ALAMAZSINIZ.");
+    } else{
+        printf("BASVURMAK ISTIYORSANIZ 1\n");
+        printf("BASVURMAK ISTEMIYORSANIZ 0\n");
+        printf("SECINIZ:");
+        scanf(" %d",&user.kredi_karti_basvuru);
+        sonYonlendirme();
+    }
 }
 
 void basvuruIslemleri_Menu() {
