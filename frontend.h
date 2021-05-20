@@ -351,7 +351,7 @@ void krediLimitArttirma(){
             scanf("%d", &istek);
             if(arti>istek){
                 user.kredi_karti_limit_miktari=limit+istek;
-                printf("YENI LIMITINIZ: %s",user.kredi_karti_limit_miktari);
+                printf("YENI LIMITINIZ: %d",user.kredi_karti_limit_miktari);
             }  else{
                 printf("HATALI SECIM");
                 krediLimitArttirma();
