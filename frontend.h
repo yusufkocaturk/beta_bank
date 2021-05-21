@@ -635,16 +635,33 @@ void paraCekme() {
 void krediKartinaYatirma() {
     clearScreen();
     printf("KREDI KARTINA PARA YATIRMA SAYFASI\n\n");
-    int tutar;
-    printf("KREDI KARTI BORCUNUZ: %d\n",user.kredi_karti_borc);
+    int tutar, tutar2;
+    printf("KREDI KARTI BORCUNUZ: %d\n", user.kredi_karti_borc);
+    printf("KREDI KARTI LIMITINIZ: %d\n\n", user.kredi_karti_limit_miktari);
     printf("YATIRMAK ISTEDIGINIZ TUTARI GIRINIZ : ");
+
     scanf(" %d", &tutar);
-    user.bakiye -= tutar;
-    user.kredi_karti_borc -= tutar;
-    kullaniciBilgileriniYazdir();
-    kullaniciBilgileriniCek(USER1);
-    beklet(2);
-    printf(" YATIRDIGINIZ TUTAR: %d\n\n ", tutar);
+    if(tutar<user.kredi_karti_borc) {
+        user.bakiye -= tutar;
+        user.kredi_karti_borc -= tutar;
+        kullaniciBilgileriniYazdir();
+        kullaniciBilgileriniCek(USER1);
+        beklet(2);
+        printf("YATIRDIGINIZ TUTAR: %d\n ", tutar);
+        printf("KALAN BORCUNUZ: %d\n\n", user.kredi_karti_borc);
+    }
+    else{
+        user.bakiye-=tutar;
+        user.kredi_karti_limit_miktari += (tutar - user.kredi_karti_borc);
+        user.kredi_karti_borc=0;
+        kullaniciBilgileriniYazdir();
+        kullaniciBilgileriniCek(USER1);
+        beklet(2);
+        printf("YATIRDIGINIZ TUTAR: %d\n ", tutar);
+        printf("YENI KREDI KARTI LIMITINIZ: %d\n", user.kredi_karti_limit_miktari);
+        printf("KALAN BORCUNUZ: %d\n\n", user.kredi_karti_borc);
+    }
+
     sonYonlendirme();
 }
 
