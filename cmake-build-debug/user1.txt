@@ -2,7 +2,7 @@ userId 12341682
 password 1234
 hesapNo 1239876
 iban 76859403
-bakiye 1060
+bakiye 60
 krediKarti 1
 krediKartiBorc 0
 krediKartiBasvuru 0
