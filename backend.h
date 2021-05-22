@@ -19,7 +19,7 @@ void kullaniciBilgileriniCek(char userName[]) {
 
     int satirSayisi = 0;
     char c;
-    file = fopen(userName, "r");
+    file = fopen(userName, "rb");
     if (file == NULL) {
         printf("VERITABANINDAN VERILER OKUNAMADI");
         exit(0);
@@ -76,7 +76,7 @@ void kullaniciBilgileriniCek(char userName[]) {
 void kullaniciBilgileriniYazdir() {
 
 
-    file = fopen("user1.txt", "w");
+    file = fopen("user1.txt", "wb");
 
     fprintf(file, "userId %d\n", user.userId);
     fprintf(file, "password %d\n", user.password);
