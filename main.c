@@ -38,8 +38,8 @@ User user;
 
 
 int main() {
-    //
-    //veriGirisiYap(USER1);
+
+
     detectOperatingSystem();
     kullaniciBilgileriniCek(USER1);
     applicationStart();
