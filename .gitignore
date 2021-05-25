@@ -4,7 +4,6 @@
 !main.c
 !frontend.h
 !backend.h
-!notlar.h
 !CMakeLists.txt
 !/cmake-build-debug/user1.txt
 !/cmake-build-debug/user2.txt
