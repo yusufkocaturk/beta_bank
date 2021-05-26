@@ -162,6 +162,7 @@ void betaKart_Menu() {
 }
 
 
+
 void dovizAlim() {
     clearScreen();
     int response, alim, dolar = 3, euro = 4, altin = 221;
@@ -175,11 +176,15 @@ void dovizAlim() {
         case 1:
             printf("Alacaginiz dolar miktarini giriniz: ");
             scanf(" %d", &alim);
-            if (alim <= user.bakiye) {
+            if (user.bakiye >= alim) {
                 user.dolar_bakiye = user.dolar_bakiye + alim;
                 user.bakiye = user.bakiye - (alim * dolar);
                 kullaniciBilgileriniYazdir();
                 kullaniciBilgileriniCek(USER);
+                printf("\nISLEMINIZ GERCEKLESTIRILDI\n");
+                printf("DOLAR: %d\n", user.dolar_bakiye);
+                printf("EURO: %d\n", user.euro_bakiye);
+                printf("ALTIN: %d\n", user.altin_bakiye);
             } else {
                 printf("BAKIYENIZ YETERSIZ\n");
                 dovizAlim();
@@ -189,11 +194,15 @@ void dovizAlim() {
         case 2:
             printf("Alacaginiz euro miktarini giriniz: ");
             scanf(" %d", &alim);
-            if (alim <= user.bakiye) {
+            if (user.bakiye >= alim) {
                 user.euro_bakiye = user.euro_bakiye + alim;
                 user.bakiye = user.bakiye - (alim * euro);
                 kullaniciBilgileriniYazdir();
                 kullaniciBilgileriniCek(USER);
+                printf("\nISLEMINIZ GERCEKLESTIRILDI\n");
+                printf("DOLAR: %d\n", user.dolar_bakiye);
+                printf("EURO: %d\n", user.euro_bakiye);
+                printf("ALTIN: %d\n", user.altin_bakiye);
             } else {
                 printf("BAKIYENIZ YETERSIZ\n");
                 dovizAlim();
@@ -203,11 +212,15 @@ void dovizAlim() {
         case 3:
             printf("Alacaginiz altin miktarini giriniz: ");
             scanf(" %d", &alim);
-            if (alim <= user.bakiye) {
+            if (user.bakiye >= alim) {
                 user.altin_bakiye = user.altin_bakiye + alim;
                 user.bakiye = user.bakiye - (alim * altin);
                 kullaniciBilgileriniYazdir();
                 kullaniciBilgileriniCek(USER);
+                printf("\nISLEMINIZ GERCEKLESTIRILDI\n");
+                printf("DOLAR: %d\n", user.dolar_bakiye);
+                printf("EURO: %d\n", user.euro_bakiye);
+                printf("ALTIN: %d\n", user.altin_bakiye);
             } else {
                 printf("BAKIYENIZ YETERSIZ\n");
                 dovizAlim();
@@ -346,12 +359,15 @@ void bireyselKrediBasvurusu() {
     printf("BASVURMAK ISTEMIYORSANIZ 0\n");
     printf("SECINIZ:");
     scanf(" %d", &user.bireysel_kredi_basvurusu);
+    printf("\nISLEMINIZ GERCEKLESTIRILDI\n");
+    kullaniciBilgileriniYazdir();
+    kullaniciBilgileriniCek(USER);
     sonYonlendirme();
 }
 
 void krediLimitArttirma() {
     clearScreen();
-    int limit = user.kredi_karti_limit_miktari, maas, arti, istek, sonuc;
+    int limit = user.kredi_karti_limit_miktari, maas, arti, istek;
     printf("\nKREDI KARTI LIMIT ARTTIRMA\n");
     printf("LIMITINIZ: %d\n", user.kredi_karti_limit_miktari);
     printf("AYLIK NET MAASINIZI GIRINIZ:");
@@ -370,7 +386,10 @@ void krediLimitArttirma() {
             scanf("%d", &istek);
             if (arti > istek) {
                 user.kredi_karti_limit_miktari = limit + istek;
+                printf("\nISLEMINIZ GERCEKLESTIRILDI\n");
                 printf("YENI LIMITINIZ: %d", user.kredi_karti_limit_miktari);
+                kullaniciBilgileriniYazdir();
+                kullaniciBilgileriniCek(USER);
             } else {
                 printf("HATALI SECIM");
                 krediLimitArttirma();
@@ -390,6 +409,9 @@ void krediKartiBasvurusu() {
         printf("BASVURMAK ISTEMIYORSANIZ 0\n");
         printf("SECINIZ:");
         scanf(" %d", &user.kredi_karti_basvuru);
+        printf("\nISLEMINIZ GERCEKLESTIRILDI\n");
+        kullaniciBilgileriniYazdir();
+        kullaniciBilgileriniCek(USER);
         sonYonlendirme();
     }
 }
