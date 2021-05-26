@@ -41,7 +41,7 @@ int main() {
 
 
     detectOperatingSystem();
-    kullaniciBilgileriniCek(USER1);
+    kullaniciBilgileriniCek(USER);
     applicationStart();
 }
 
